@@ -8,8 +8,8 @@
 		<ExcludeFileNames>"ActiveNotifyer.exe","LANDeskPortalManager.exe","LDISCN32.EXE"</ExcludeFileNames> <!--> Enclose each file name in quotes (optional)</-->
 		<RegKey>HKEY_LOCAL_MACHINE\SOFTWARE\AppSense\Environment Manager\</RegKey> <!--> Full key path required. CURRENT_USER & LOCAL_MACHINE keys accepted. Multiple paths not accepted. </-->
 		<RegKeyValue>ProcessWhiteList</RegKeyValue> <!--> Name of registry value to scan. Multiple values not accepted. </-->
-		<AdminNotifyDL>radoslav.radoev@sharp.com,radoslav.radoev@sharp.com,radoslav.radoev@sharp.com</AdminNotifyDL> <!--> Comma separated distribution lists. Quotes - optional</-->
-		<AdminNotifyIndividualUsers>radoslav.radoev@sharp.com</AdminNotifyIndividualUsers> <!--> Comma separated individual e-mails. Quotes - optional</-->
+		<AdminNotifyDL>email@gmail.com</AdminNotifyDL> <!--> Comma separated distribution lists. Quotes - optional</-->
+		<AdminNotifyIndividualUsers>email@gmail.com</AdminNotifyIndividualUsers> <!--> Comma separated individual e-mails. Quotes - optional</-->
 	</Application>
 	
 	<Application Name="McAfee">
@@ -20,7 +20,7 @@
 		<ExcludeFileNames>filenam1.exe,filename2.dll,filename3.doc</ExcludeFileNames> 
 		<RegKey>HKEY_LOCAL_MACHINE\SOFTWARE\AppSense\Environment Manager\</RegKey> 
 		<RegKeyValue>ProcessWhiteList</RegKeyValue> 
-		<AdminNotifyDL>radoslav.radoev@sharp.com</AdminNotifyDL> 
-		<AdminNotifyIndividualUsers>radoslav.radoev@sharp.com</AdminNotifyIndividualUsers> 
+		<AdminNotifyDL>email@gmail.com</AdminNotifyDL> 
+		<AdminNotifyIndividualUsers>email@gmail.com</AdminNotifyIndividualUsers> 
 	</Application>
 </Applications>
