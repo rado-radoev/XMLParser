@@ -1,0 +1,6 @@
+C:\C#\XMLParsing\XMLParsing\bin\Debug\XMLParsing.exe.config
+C:\C#\XMLParsing\XMLParsing\bin\Debug\XMLParsing.exe
+C:\C#\XMLParsing\XMLParsing\bin\Debug\XMLParsing.pdb
+C:\C#\XMLParsing\XMLParsing\obj\Debug\XMLParsing.csprojResolveAssemblyReference.cache
+C:\C#\XMLParsing\XMLParsing\obj\Debug\XMLParsing.exe
+C:\C#\XMLParsing\XMLParsing\obj\Debug\XMLParsing.pdb
