@@ -1,6 +1,9 @@
 ﻿using System.Net.Mail;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using System.ComponentModel;
+using System;
 
 namespace XMLParsing
 {
@@ -8,7 +11,7 @@ namespace XMLParsing
     {
         private string distributionLists;
         private string indiVidualUsers;
-        private string fromEmail = "radoslav.radoev@sharp.com";
+        private string fromEmail = "dummyEmail@sharp.com";
         private string emailSubject;
         private string emailBody;
         private readonly string SMTP = "exmail.sharp.com";
@@ -41,10 +44,7 @@ namespace XMLParsing
         /// <param name="indiVidualUsers">An array of individual Email addresses to receive the Email notificattion</param>
         /// <param name="distributionLists">An array of DLs to  to receive the Email notification</param>
         public Email(string fromEmail, string indiVidualUsers, string distributionLists)
-            : this(fromEmail, indiVidualUsers)
-        {
-            DistributionLists = distributionLists;
-        }
+            : this(fromEmail, indiVidualUsers) => DistributionLists = distributionLists;
 
         /// <summary>
         /// Two parameter constructor
@@ -65,7 +65,7 @@ namespace XMLParsing
         /// All properties are collected from the constructor when
         /// the object is instantiated
         /// </summary>
-        public void sendMail()
+        public void SendMail()
         {
             SmtpClient client = new SmtpClient(SMTP);
 
@@ -80,18 +80,44 @@ namespace XMLParsing
             string[] users = ProcessEmails(indiVidualUsers);
             string[] dls = ProcessEmails(distributionLists);
 
-
+            // Get all the individual and DL email addresses
             for (int i = 0; i < dls.Length; i++)
             {
-                message.To.Add(dls[i]);
+                try
+                {
+                    message.To.Add(dls[i]);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Verify all emails are typed in correctly. One or more addresses are not in a recognized format.");
+                }
             }
 
             for (int i = 0; i < users.Length; i++)
             {
-                message.To.Add(users[i]);
+                try
+                {
+                    message.To.Add(users[i]);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Verify all emails are typed in correctly. One or more addresses are not in a recognized format.");
+                }
             }
 
-            client.Send(message);
+            // Send the e-mail
+            try
+            {
+                client.Send(message);
+            }
+            catch (SmtpFailedRecipientsException)
+            {
+                Console.WriteLine("Please verify correct e-mail address is entered. The message could not be delivered to one or more of the recipients.");
+            }
+            catch (SmtpException)
+            {
+                Console.WriteLine("The connection to the SMTP server failed.");
+            }
         }
 
         /// <summary>
@@ -121,7 +147,7 @@ namespace XMLParsing
         /// <param name="applicatioName">Current application name</param>
         /// <param name="regValue">Which registry value is being searched. Default: ProcessWhiteList</param>
         /// <returns>Email body formatted as a string</returns>
-        public string formatEmailBody(List<string> differences, string applicatioName, string regValue = "ProcessWhiteList")
+        public string FormatEmailBody(List<string> differences, string applicatioName, string regValue = "ProcessWhiteList")
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(string.Format("Application: {0}\n", applicatioName));

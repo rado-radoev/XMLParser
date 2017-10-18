@@ -4,8 +4,8 @@ namespace XMLParsing
 {
     interface IUtilityInterface
     {
-        List<string> compareFilesAndRegistry(File file, MyRegistry registry);
-        string getXMLLocation();
-        string formatEmailBody(List<string> differences, string applicatioName, string regValue = "ProcessWhiteList");
+        List<string> CompareFilesAndRegistry(EnumerateFiles file, RegistryReader registry);
+        string GetXMLLocation();
+        string FormatEmailBody(List<string> differences, string applicatioName, string regValue = "ProcessWhiteList");
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Xml;
 
 namespace XMLParsing
@@ -18,7 +19,7 @@ namespace XMLParsing
             settings.IgnoreComments = true;
 
             // Start reading the xml file
-            using (reader = XmlReader.Create(utility.getXMLLocation(), settings))
+            using (reader = XmlReader.Create(utility.GetXMLLocation(), settings))
             {
                 // while there are still application nodes in the XML
                 while (reader.Read())
@@ -34,14 +35,14 @@ namespace XMLParsing
                         Email email = new Email();
 
                         // Create new MyRegistry object 
-                        MyRegistry reg = new MyRegistry();
+                        RegistryReader reg = new RegistryReader();
                         
                         // Create new File object
-                        File file = new File();
+                        EnumerateFiles file = new EnumerateFiles();
 
                         // Creaete a child XmlReader object that contains all child elements for the Application node
                         string currentApp = reader["Name"];
-                        Console.WriteLine("Reading: " + currentApp);
+                        Console.WriteLine("Processing: " + currentApp);
                         inner = reader.ReadSubtree();
 
                         // Quick check if Enabled is the first element. Otherwise throw an error to the fool that misconfigured the XML
@@ -101,13 +102,13 @@ namespace XMLParsing
                         // Check for differences and send e-mail
                         if (!skip)
                         {
-                            List<string> differences = utility.compareFilesAndRegistry(file, reg);
+                            List<string> differences = utility.CompareFilesAndRegistry(file, reg);
                             // Send the e-mail
                             if (differences.Count > 0)
                             {
-                                email.EmailBody = utility.formatEmailBody(differences, currentApp);
+                                email.EmailBody = utility.FormatEmailBody(differences, currentApp);
                                 email.EmailSubject = string.Format("{0} new executable update", currentApp);
-                                email.sendMail();
+                                email.SendMail();
                             }
                         }
                         skip = false;

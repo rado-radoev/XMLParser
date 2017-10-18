@@ -28,7 +28,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -47,7 +47,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>XMLParser.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\XMLParser.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -61,22 +61,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Email.cs" />
-    <Compile Include="File.cs" />
+    <Compile Include="EnumerateFiles.cs" />
     <Compile Include="IUtilityInterface.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MyRegistry.cs" />
+    <Compile Include="RegistryReader.cs" />
     <Compile Include="ParseXML.cs" />
     <Compile Include="XMLUtility.cs" />
-    <Compile Include="xmlParser_3.cs" />
-    <Compile Include="xmlParser2_.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="test.xml" />
-    <Content Include="XMLParser.ico" />
+    <Content Include="Resources\XMLParser.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
